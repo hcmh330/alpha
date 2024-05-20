@@ -908,6 +908,7 @@
     <nav class="navbar">
         <a href="#home" class="hover-underline">home</a>
         <a href="#about" class="hover-underline">about</a>
+        <a href="#about" class="hover-underline">Evaliation</a>
         <a href="#courses" class="hover-underline">courses</a>
         <a href="#teacher" class="hover-underline">teacher</a>
         <a href="#review" class="hover-underline">review</a>
