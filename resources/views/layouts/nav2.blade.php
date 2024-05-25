@@ -906,19 +906,30 @@
     <img style="height:80px ;width:80px;margin:0px;padding:0px" src="../images/Hcm.png" alt="hello">
 
     <nav class="navbar">
-        <a href="#home" class="hover-underline">home</a>
-        <a href="#about" class="hover-underline">about</a>
-        <a href="#about" class="hover-underline">Evaliation</a>
-        <a href="#courses" class="hover-underline">courses</a>
-        <a href="#teacher" class="hover-underline">teacher</a>
-        <a href="#review" class="hover-underline">review</a>
-        <a href="#blog" class="hover-underline">blog</a>
-        <a href="#contact" class="hover-underline">contact</a>
+        <a href="../home" class="hover-underline">الصفحة الرئيسية</a>
+        <a href="../evaluation" class="hover-underline">الامتحانات</a>
+        <a href="../course" class="hover-underline">الدروس</a>
+        <a href="../about" class="hover-underline">معلومات عنا</a>
+        <a href="../teacher" class="hover-underline">مدرسون</a>
+        <a href="../review" class="hover-underline">تقييمات</a>
+        <a href="../blog" class="hover-underline">مدونة</a>
+
+
+
     </nav>
 
     <div class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="../" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+            
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                
+            </svg>
             {{ Auth::user()->name }}
+
         </a>
 
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

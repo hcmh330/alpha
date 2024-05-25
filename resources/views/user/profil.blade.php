@@ -615,10 +615,11 @@
     <!-- ===== ===== User Details Sections ===== ===== -->
     <section class="userDetails card">
         <div class="userName">
-            <h1 class="name">Jeremy Rose</h1>
+            <h1 class="name" >{{ Auth::user()->name }}</h1> <br>
             <div class="map">
+               
                 <i class="ri-map-pin-fill ri"></i>
-                <span>New York, NY</span>
+                
             </div>
             <p>Product Designer</p>
         </div>
