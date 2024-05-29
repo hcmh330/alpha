@@ -1,8 +1,8 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\user\ProfilController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +15,23 @@ use App\Http\Controllers\user\ProfilController;
 |
 */
 
-
-
+// Public routes
+Route::get('/testhomepage', function () {
+    return view('/testhomepage');
+});
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('auth.login')->middleware('guest');
 });
 
 Route::get('/home', function () {
     return view('/home');
+});
+Route::get('/', function () {
+    return view('/home');
+});
+Route::get('/', function () {
+    return view('/login');
 });
 
 Route::get('/course', function () {
@@ -32,10 +40,6 @@ Route::get('/course', function () {
 
 Route::get('/about', function () {
     return view('/about');
-});
-
-Route::get('/home', function () {
-    return view('/home');
 });
 
 Route::get('/teacher', function () {
@@ -54,18 +58,22 @@ Route::get('/evaliation', function () {
     return view('/evaliation');
 });
 
-Auth::routes(["verify"=>true]);
-// Route::get('/user/profil', [ProfilController::class, 'index'])->name('user.profil');
+// Auth routes
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::get('/user/profil', [App\Http\Controllers\user\ProfilController::class, 'index'])->name('user.profil')->middleware('auth');
+// Protected routes
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/user/profil', [ProfilController::class, 'index'])->name('user.profil');
 
+    Route::get('/evaluation', [TestController::class, 'showTestForm'])->name('evaluation.form');
+    Route::post('/evaluation', [TestController::class, 'submitTestForm'])->name('evaluation.submit');
+    Route::get('/evaluation/result', [TestController::class, 'showResult'])->name('evaluation.result');
 
-// routes/web.php
-
-
-use App\Http\Controllers\TestController;
-
-Route::get('/evaluation', [TestController::class, 'showTestForm'])->name('evaluation.form');
-Route::post('/evaluation', [TestController::class, 'submitTestForm'])->name('evaluation.submit');
-Route::get('/evaluation/result', [TestController::class, 'showResult'])->name('evaluation.result');
+    Route::get('/test', [TestController::class, 'showTestForm'])->name('evaluation.form');
+    Route::post('/test', [TestController::class, 'submitTestForm'])->name('evaluation.submit');
+    Route::get('/result', [TestController::class, 'showResult'])->name('evaluation.result');
+});
+Route::get('/', function () {
+    return view('auth.login');
+});

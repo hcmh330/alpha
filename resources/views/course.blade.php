@@ -3,176 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Video Redirect</title>
     <style>
-        #courses{
-            margin-top: 40px;
+        #video-container {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            margin: auto;
+        }
+
+        #player {
+            width: 100%;
+            height: 315px;
+        }
+
+        #progress-bar {
+            width: 100%;
+            background-color: #f3f3f3;
+        }
+
+        #progress {
+            width: 0;
+            height: 10px;
+            background-color: #4CAF50;
         }
     </style>
-
 </head>
 <body>
-@include('layouts/nav2')
-
-<!-- courses section starts -->
-
-<section class="courses" id="courses">
-
-<h1 class="heading">our famous courses</h1>
-
-<div class="box-container">
-
-    <div class="box">
-        <div class="image shine">
-            <img src="images/course-1.jpg" alt="">
-            <h3>basic</h3>
-        </div>
-        <div class="content">
-            <h4>$49.99</h4>
-            <p>updated 25/09/2021</p>
-            <h3>frontend development</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <span>(785)</span>
-            </div>
-            <div class="icons">
-                <span><i class="far fa-bookmark"></i> 15 lessons</span>
-                <span><i class="far fa-clock"></i> 8h 25m 9s</span>
-            </div>
+    <div id="video-container">
+        <div id="player"></div>
+        <div id="progress-bar">
+            <div id="progress"></div>
         </div>
     </div>
 
-    <div class="box">
-        <div class="image shine">
-            <img src="images/course-2.jpg" alt="">
-            <h3>basic</h3>
-        </div>
-        <div class="content">
-            <h4>$49.99</h4>
-            <p>updated 25/09/2021</p>
-            <h3>frontend development</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <span>(785)</span>
-            </div>
-            <div class="icons">
-                <span><i class="far fa-bookmark"></i> 15 lessons</span>
-                <span><i class="far fa-clock"></i> 8h 25m 9s</span>
-            </div>
-        </div>
-    </div>
+    <script>
+        // Load the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    <div class="box">
-        <div class="image shine">
-            <img src="images/course-3.jpg" alt="">
-            <h3>basic</h3>
-        </div>
-        <div class="content">
-            <h4>$49.99</h4>
-            <p>updated 25/09/2021</p>
-            <h3>frontend development</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <span>(785)</span>
-            </div>
-            <div class="icons">
-                <span><i class="far fa-bookmark"></i> 15 lessons</span>
-                <span><i class="far fa-clock"></i> 8h 25m 9s</span>
-            </div>
-        </div>
-    </div>
+        var player;
+        var videoDuration = 0;
 
-    <div class="box">
-        <div class="image shine">
-            <img src="images/course-4.jpg" alt="">
-            <h3>basic</h3>
-        </div>
-        <div class="content">
-            <h4>$49.99</h4>
-            <p>updated 25/09/2021</p>
-            <h3>frontend development</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <span>(785)</span>
-            </div>
-            <div class="icons">
-                <span><i class="far fa-bookmark"></i> 15 lessons</span>
-                <span><i class="far fa-clock"></i> 8h 25m 9s</span>
-            </div>
-        </div>
-    </div>
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '315',
+                width: '560',
+                videoId: 'QmfMfoOkKw4',
+                playerVars: {
+                    'start': 8,
+                    'autoplay': 1,
+                    'controls': 0, // Hide controls
+                    'rel': 0,
+                    'disablekb': 1,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
 
-    <div class="box">
-        <div class="image shine">
-            <img src="images/course-5.jpg" alt="">
-            <h3>basic</h3>
-        </div>
-        <div class="content">
-            <h4>$49.99</h4>
-            <p>updated 25/09/2021</p>
-            <h3>frontend development</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <span>(785)</span>
-            </div>
-            <div class="icons">
-                <span><i class="far fa-bookmark"></i> 15 lessons</span>
-                <span><i class="far fa-clock"></i> 8h 25m 9s</span>
-            </div>
-        </div>
-    </div>
+        function onPlayerReady(event) {
+            videoDuration = player.getDuration();
+            setInterval(updateProgressBar, 1000);
+        }
 
-    <div class="box">
-        <div class="image shine">
-            <img src="images/course-6.jpg" alt="">
-            <h3>basic</h3>
-        </div>
-        <div class="content">
-            <h4>$49.99</h4>
-            <p>updated 25/09/2021</p>
-            <h3>frontend development</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <span>(785)</span>
-            </div>
-            <div class="icons">
-                <span><i class="far fa-bookmark"></i> 15 lessons</span>
-                <span><i class="far fa-clock"></i> 8h 25m 9s</span>
-            </div>
-        </div>
-    </div>
+        function updateProgressBar() {
+            var currentTime = player.getCurrentTime();
+            var progress = (currentTime / videoDuration) * 100;
+            document.getElementById('progress').style.width = progress + '%';
 
-</div>
+            // Prevent seeking
+            player.seekTo(currentTime, true);
+        }
 
-</section>
-
-<!-- courses section ends -->
-
-@include('layouts/footer')
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                window.location.href = "/evaluation";
+            }
+        }
+    </script>
 </body>
 </html>
+
